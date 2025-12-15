@@ -36,3 +36,31 @@ Feature: Cut Planner E2E behaviours
   Scenario: Does not call backend when no elements
     When I click the Optimize button without adding elements
     Then the backend should not be called
+
+  Scenario: SVG visualization appears after optimization
+    When I click the Add Element button
+    And I set the element width to 500
+    And I set the element height to 300
+    And I click the Optimize button
+    Then the SVG visualization should be visible
+    And the SVG should have viewBox "0 0 2000 1000"
+    And the SVG should contain a sheet rectangle
+    And the SVG should contain part rectangles
+
+  Scenario: PNG export button is disabled when no placements
+    Then the Export as PNG button should be disabled
+
+  Scenario: PNG export button is enabled after optimization
+    When I click the Add Element button
+    And I set the element width to 500
+    And I set the element height to 300
+    And I click the Optimize button
+    Then the Export as PNG button should be enabled
+
+  Scenario: PNG export downloads file
+    When I click the Add Element button
+    And I set the element width to 500
+    And I set the element height to 300
+    And I click the Optimize button
+    And I click the Export as PNG button
+    Then a PNG file should be downloaded
