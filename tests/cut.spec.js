@@ -426,9 +426,5 @@ describe('Cut Planner E2E', function () {
 		// Verify the button click was successful (button should still be enabled)
 		const isEnabled = await exportButton.isEnabled();
 		expect(isEnabled).to.be.true;
-
-		// Note: In a real scenario, you would configure Chrome download preferences
-		// and verify the file exists in the download directory. For now, we verify
-		// that clicking the button doesn't cause errors and the action completes.
 	});
 });
